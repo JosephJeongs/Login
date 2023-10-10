@@ -1,16 +1,19 @@
 <LoginManager>:
     LoginPageScreen:
-        name: "loginpage"
+        name: "login_page"
     AccountRegisterScreen:
-        name: "registerpage"
+        name: "register_page"
     LoggedInScreen:
-        name: "loggedinpage"
-
-
+        name: "logged_in_page"
 
 <LoginPageScreen>:
     BoxLayout:
+        spacing: 10
         orientation: "vertical"
+        Label:
+            text: ""
+            id: invalid_info
+            size_hint: 1,.1
         BoxLayout:
             orientation: "horizontal"
             Label:
@@ -37,27 +40,28 @@
             text: "Register Account"
             size_hint: .25,.15
             pos_hint: {"center_x":.5}
-            on_release: root.accountregister(True)
+            on_release: root.account_register(True)
         Button:
             text: "Enter"
             size_hint: .25,.15
             pos_hint: {"center_x":.5}
             on_release: root.userinfo(user.text, password.text)
 
-
-
-
-
 <AccountRegisterScreen>:
     BoxLayout:
+        spacing: 20
         orientation: "vertical"
+        Label:
+            text: ""
+            id: invalid_info
+            size_hint: 1,.15
         BoxLayout:
             Label:
                 text: "Enter new username"
                 size_hint: .15,.1
                 pos_hint: {"center_y": .6}
             TextInput:
-                id: newuser
+                id: new_user
                 hint_text: "username"
                 size_hint: .15,.25
                 pos_hint: {"center_y": .6}
@@ -67,7 +71,7 @@
                 size_hint: .15,.1
                 pos_hint: {"center_y": .5}
             TextInput:
-                id: newpass
+                id: new_pass
                 hint_text: "password"
                 size_hint: .15,.25
                 pos_hint: {"center_y": .5}
@@ -77,28 +81,23 @@
                 size_hint: .15,.1
                 pos_hint: {"center_y": .4}
             TextInput:
-                id: confirmpass
+                id: confirm_pass
                 hint_text: "confirm"
                 size_hint: .15,.25
                 pos_hint: {"center_y": .4}
         BoxLayout:
             Label:
-                text: "Password must contain at least one of each requirement:\n- Capitalized letter (e.g.: ABC...XYZ)\n- Lowercase letter (e.g.: abc...xyz)\n- Number (1234567890)\n- Special Character (e.g.: ~!@#$%^&*)\n- Username & passowrd must be at least 8 characters"
+                text: "Password must contain at least one of each requirement:\n- Capitalized letter (e.g.: ABC...XYZ)\n- Lowercase letter (e.g.: abc...xyz)\n- Number (1234567890)\n- Special Character (e.g.: ~!@#$%^&*_)\n- Username & password must be at least 8 characters"
         Button:
             text: "Create Account"
-            size_hint: .15,.1
+            size_hint: .15,.25
             pos_hint: {"center_x": .5}
-            on_release: root.createaccount(newuser.text, newpass.text, confirmpass.text)
+            on_release: root.create_account(new_user.text, new_pass.text, confirm_pass.text)
         Button:
             text: "Cancel"
-            size_hint: .15,.1
+            size_hint: .15,.2
             pos_hint: {"center_x": .5}
             on_release: root.goback(True)
-
-
-
-
-
 
 <LoggedInScreen>:
     Label:
